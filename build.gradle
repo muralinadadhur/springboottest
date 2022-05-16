@@ -1,0 +1,74 @@
+buildscript {
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// plugins related to - versioning, dependency, SCM
+plugins {
+    // Netflix nebula plugins.  overview of all nebula plugins available at - http://nebula-plugins.github.io/documentation/plugin_overview.html
+    id 'nebula.gradle-scm' version "${nebulaGradleScmPluginVersion}"
+    id 'nebula.gradle-git-scm' version "${nebulaGradleGitScmPluginVersion}"
+    id 'nebula.optional-base' version "${nebulaOptionalBasePluginVersion}"
+}
+
+// plugins related to - packaging, releasing
+plugins {
+    id 'nebula.maven-publish' version "${nebulaMavenPublishPluginVersion}"
+    id 'nebula.javadoc-jar' version "${nebulaJavadocJarPluginVersion}"
+    id 'nebula.source-jar' version "${nebulaSourceJarPluginVersion}"
+    id 'com.jfrog.artifactory' version "${jfrogArtifactoryPluginVersion}"
+}
+
+// plugins related to - communication
+plugins {
+    id 'nebula.metrics' version "${nebulaMetricsPluginVersion}"
+    id 'nebula.contacts' version "${nebulaContactsPluginVersion}"
+}
+
+// plugins related to - Code Quality
+plugins {
+    id 'org.sonarqube' version "${sonarqubePluginVersion}"
+    id 'jacoco'
+    id 'nebula.integtest' version "${nebulaIntegtestPluginVersion}"
+    id 'org.owasp.dependencycheck' version "${owaspDependencyCheckPluginVersion}"
+    id 'com.github.sherter.google-java-format' version "${googleJavaFormatPluginVersion}"
+}
+
+// plugins related to - code-gen
+plugins {
+    id 'io.franzbecker.gradle-lombok' version "${gradleLombokPluginVersion}"
+}
+
+// plugins related to - springboot
+plugins {
+    // spring-boot specific
+    id "com.gorylenko.gradle-git-properties" version "${gradleGitPropertiesPluginVersion}"
+}
+
+// project specific plugins - TBD
+plugins {
+    id "org.flywaydb.flyway" version "${flywayPluginVersion}"
+    id "nu.studer.jooq" version "${jooqPluginVersion}" apply false
+}
+
+// Uncomment below if need compatibility with previous versions of JUnit (i.e. JUnit 3 and/or 4)
+ext.allJUnitCompatible = true
+
+ext.chegg_gradle_base_url = 'http://boots-gradle.test.cheggnet.com'
+
+apply from: 'gradle/springboot-dependencies.gradle'
+apply from: 'gradle/common-dependencies.gradle'
+apply from: 'gradle/metrics-dependencies.gradle'
+apply from: 'project-dependencies.gradle'
+
+dependencies {
+    /*
+    * STOP HERE!!
+    * Please don't add dependencies here, refer below files to find appropriate placeholder:
+    * 1. common-dependencies.gradle
+    * 2. metrics-dependencies.gradle
+    * 3. springboot-dependencies.gradle
+    * 4. project-dependencies.gradle
+    * */
+}
