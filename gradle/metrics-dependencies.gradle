@@ -1,0 +1,16 @@
+/*  Metrics and Insights related libraries
+* IMPORTANT: Before adding dependencies below, see if dependency qualifies:
+* [Yes, if 1|2 && 3 statements below are true]:
+*       1. Dependency is a core requirement for Metrics collection for services
+*       2. Dependency is a core requirement for Insights collection for services
+*       3. Adding this dependency to every boots based service can be justified
+*
+* [No, if one of statements below is false]:
+*       Dependency can't be classified to Metrics or Insights library
+*       Dependency doesn't have a valid Open Source license
+*       Dependency isn't maintained and no frequent releases are documented
+*
+* */
+dependencies {
+    implementation('org.jolokia:jolokia-core')
+}

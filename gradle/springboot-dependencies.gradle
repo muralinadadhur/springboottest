@@ -1,0 +1,28 @@
+/* Libraries required by Spring-boot
+*  This Gradle file is placeholder for Spring-boot or Core Spring framework related libraries only.
+*  Please don't add non-spring libraries here.
+*/
+
+apply from: "${chegg_gradle_base_url}/chegg-gradle/scripts/chegg-nebula-build.3/springboot2.groovy"
+
+/**
+ * set overriddenByDependencies flag true if project's dependencies needs to override
+ * SpringBoot's default dependencies.
+ */
+dependencyManagement {
+    overriddenByDependencies = false
+}
+
+dependencies {
+
+    // importing SpringBoot's BOM
+    implementation enforcedPlatform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+
+    // importing AWS Java SDK 2.+ BOM and enforcing to use latest version of all AWS SDK artifacts
+    // irrespecive of transitive dependency with older versions
+    implementation enforcedPlatform('software.amazon.awssdk:bom:2.+')
+
+    implementation('org.springframework.boot:spring-boot-starter')
+
+    implementation group: 'com.chegg.boots.starter', name: 'boots-starter-awssecretmanager', version: '0.+'
+}

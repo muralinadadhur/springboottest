@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <property name="CONSOLE_LOG_PATTERN" value="%d %level %logger{50} : %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <springProfile name="local">
+            <encoder>
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </encoder>
+        </springProfile>
+        <springProfile name="!local">
+            <encoder class="com.newrelic.logging.logback.NewRelicEncoder"/>
+        </springProfile>
+    </appender>
+
+    <appender name="ASYNC" class="com.newrelic.logging.logback.NewRelicAsyncAppender">
+        <appender-ref ref="CONSOLE" />
+        <discardingThreshold>${LOG_DISCARDING_THRESHOLD}</discardingThreshold>
+    </appender>
+
+    <root level="ERROR">
+        <appender-ref ref="ASYNC" />
+    </root>
+
+    <logger name="com.chegg" additivity="false" level="${LOG_LEVEL}">
+        <appender-ref ref="ASYNC"/>
+    </logger>
+</configuration>

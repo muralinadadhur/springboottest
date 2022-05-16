@@ -1,0 +1,68 @@
+contacts {
+    'dl-ls-eng@chegg.com' {
+        moniker 'Chegg Study Engineering'
+        role 'owner'
+    }
+}
+
+mainClassName = 'com.chegg.release.checklist.ReleaseChecklistApplication'
+
+// Enable or disable JOOQ configuration
+ext.enableJooq = false
+
+if (enableJooq.toBoolean()) {
+    apply plugin: 'nu.studer.jooq'
+
+    // Change the JOOQ version here to override the default version provided by the JOOQ plugin
+    jooq.version = '3.13.2'
+
+    // Change these properties to determine how JOOQ is configured
+    // jooqUrl, jooqUser, jooqPassword are determined using the following order of precedence:
+    //   1. project properties
+    //   2. application properties file
+    //   3. secrets manager
+    ext {
+        jooqUrlPropertyName = "spring.datasource.url"
+        jooqUserPropertyName = "spring.datasource.username";
+        jooqPasswordPropertyName = "spring.datasource.password"
+    }
+
+    // load JOOQ properties
+    apply from: "${chegg_gradle_base_url}/chegg-gradle/scripts/chegg-nebula-build.3/jooq-props.groovy"
+
+    // Configure JOOQ
+    ext {
+        jooqConfig = {}
+        jooqConfig.url = jooqUrl
+        jooqConfig.user = jooqUser
+        jooqConfig.password = jooqPassword
+        jooqConfig.schema = 'public'  // change to desired DB schema
+//        jooqConfig.generatedPackageName = 'com.chegg.custompkg'  // configure a different Java package than the default for generated code
+//        jooqConfig.useJavaTimeTypes = true  // set to true to generate Java 8 java.time types instead of java.sql types
+    }
+
+    apply from: "${chegg_gradle_base_url}/chegg-gradle/scripts/chegg-nebula-build.3/jooq3.groovy"
+
+    // JOOQ dependencies
+    dependencies {
+        implementation group: 'org.jooq', name: 'jooq'
+
+//        jooqRuntime group: 'org.postgresql', name:'postgresql', version: '42.+' //We need to change this line based on the database used for the project.
+    }
+}
+
+/* Project specific dependencies goes here. If your dependency doesn't qualify to be added to
+* common-dependencies.gradle, metrics-dependencies.gradle or springboot-dependencies.gradle,
+* they can be added here.
+* */
+dependencies {
+    implementation group: 'com.atlassian.jira', name: 'jira-rest-java-client-core', version: '5.2.0'
+    implementation group: 'com.atlassian.jira', name: 'jira-rest-java-client-api', version: '5.2.0'
+    implementation (group: 'com.atlassian.jira', name: 'jira-rest-java-client-app', version: '5.2.0') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+    implementation group: 'org.json', name: 'json', version: '20210307'
+    compileOnly group: 'io.atlassian.fugue', name: 'fugue', version: '4.7.2'
+    compile group: 'org.codehaus.jettison', name: 'jettison', version: '1.3.8'
+}
+

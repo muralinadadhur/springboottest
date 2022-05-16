@@ -1,0 +1,41 @@
+# This is a Gradle generated file for dependency locking.
+# Manual edits can break the build and are not advised.
+# This file is expected to be part of source control.
+ch.qos.logback:logback-classic:1.2.3
+ch.qos.logback:logback-core:1.2.3
+com.chegg.boots.starter:boots-starter-awssecretmanager:0.0.7
+com.google.code.findbugs:jsr305:3.0.2
+com.google.errorprone:error_prone_annotations:2.5.1
+com.google.guava:failureaccess:1.0.1
+com.google.guava:guava:30.1.1-jre
+com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava
+com.google.j2objc:j2objc-annotations:1.3
+com.googlecode.json-simple:json-simple:1.1.1
+com.newrelic.agent.java:newrelic-api:7.2.0
+com.newrelic.logging:logback:1.2
+commons-io:commons-io:2.11.0
+info.picocli:picocli-spring-boot-starter:4.6.1
+info.picocli:picocli:4.6.1
+jakarta.annotation:jakarta.annotation-api:1.3.5
+org.apache.commons:commons-lang3:3.12.0
+org.apache.logging.log4j:log4j-api:2.14.1
+org.apache.logging.log4j:log4j-to-slf4j:2.14.1
+org.checkerframework:checker-qual:3.8.0
+org.jolokia:jolokia-core:1.6.2
+org.junit:junit-bom:5.8.1
+org.projectlombok:lombok:1.18.20
+org.slf4j:jul-to-slf4j:1.7.31
+org.slf4j:slf4j-api:1.7.31
+org.springframework.boot:spring-boot-autoconfigure:2.5.2
+org.springframework.boot:spring-boot-dependencies:2.5.2
+org.springframework.boot:spring-boot-starter-logging:2.5.2
+org.springframework.boot:spring-boot-starter:2.5.2
+org.springframework.boot:spring-boot:2.5.2
+org.springframework:spring-aop:5.3.8
+org.springframework:spring-beans:5.3.8
+org.springframework:spring-context:5.3.8
+org.springframework:spring-core:5.3.8
+org.springframework:spring-expression:5.3.8
+org.springframework:spring-jcl:5.3.8
+org.yaml:snakeyaml:1.28
+software.amazon.awssdk:bom:2.17.44

@@ -1,0 +1,45 @@
+#Template file showing JIRA fields that would be added as part of the CMC Ticket. To be updated as needed for the deployment.
+fields:
+  summary: ${CI_PROJECT_NAME} - release to production
+  description: "h2. Release checklist:\n\n
+                Please mark with a (/)  if the line item is applicable for the release.\n\n
+                Please mark with a  ✖️  if the line item it is not applicable for the release.\n\n
+                |Most recent commit that was merged to the main branch (also indicates the head of main branch)|{{${CI_COMMIT_SHA}}}|\n
+                |Smoke Tests completed| |\n
+                |Load Tests| |\n
+                |FMA Tests| |\n
+                |ECS Restarts after secrets/param store changes| |\n
+                |Staging Health check post master build deployment| |\n
+                |Infrastructure changes completed in test| |\n
+                |DB schema changes| |\n
+                |Other config changes| |"
+  issuetype:
+    name: Normal Change
+  priority:
+    name: Triage
+  project:
+    id: "12303"
+
+  #Custom fields related to CMC. The fields need to be updated as required for the deployment.
+  #Set a release label
+  label: automated_release_checklist
+  #Customfield 12503 - Rollback plan
+  customfield_12503: Commit hash or the previous AWS image to rollback the changes.
+  #Customfield 12507 - System (Required Materials, Chegg Study etc.) This will be a manual entry in the Create CMC job
+  customfield_12507: Required Materials
+  #Customfield 14700 - Test Plan Results
+  customfield_14700: Test plan results for the feature scheduled to be deployed to production. This could include screen shot results or links to the test job.
+  #Customfield 14701 - Validation Plan
+  customfield_14701: How will changes be validated in production? Please provide specific log snippets related to this change.
+
+  #No changes are required in the sections below. Default values in the template should be OK.
+  #Customfield 12506 - Execution process of the CMC - Example: Deployment, Forseti Change etc.
+  customfield_12506:
+    self: https://chegg.atlassian.net/rest/api/2/customFieldOption/12703
+    value: Deployment
+    id: "12703"
+  #Customfield 13610 - Refers to Vertical - Learning Services
+  customfield_13610:
+    self: https://chegg.atlassian.net/rest/api/2/customFieldOption/13150
+    value: Learning Services
+    id: "13150"

@@ -1,0 +1,8 @@
+ _______  _     _  _______  _______  _______
+(_______)(_)   (_)(_______)(_______)(_______)
+ _        _______  _____    _   ___  _   ___
+| |      |  ___  ||  ___)  | | (_  || | (_  |
+| |_____ | |   | || |_____ | |___) || |___) |
+ \______)|_|   |_||_______) \_____/  \_____/
+${AnsiColor.RED}[Chegg Inc.| Running Spring Boot${spring-boot.formatted-version}]${AnsiColor.RED}
+${AnsiColor.BLUE}[${info.app.name} | v${info.app.version} | ${info.app.description}]${AnsiColor.BLUE}

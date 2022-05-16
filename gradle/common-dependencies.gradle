@@ -1,0 +1,41 @@
+/* Common libraries required for utilities
+* IMPORTANT: Before adding dependencies below, see if dependency qualifies:
+* [Yes, if all statements below are true]:
+*       Dependency is a MUST and will be ideally used by all services built using Spring-boot
+*       Dependency is a core requirement for writing basic ReSTful APIs
+*       Dependency is a core requirement for writing standalone Java applications using Spring-boot
+*       Adding this dependency to every boots based service can be justified
+*
+* [No, if one of statements below is false]:
+*       Dependency solves my specific business flow, use case
+*       Others may need this library but I am not sure
+*       Dependency corresponds to alpha/beta version of a feature being developed
+*       Dependency doesn't have a valid Open Source license
+*       Dependency isn't maintained and no frequent releases are documented
+*
+* */
+dependencies {
+
+    implementation('org.apache.commons:commons-lang3')
+    implementation('org.projectlombok:lombok')
+
+    implementation group: 'info.picocli', name: 'picocli-spring-boot-starter', version: '4.+'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.+'
+    implementation group: 'com.google.guava', name: 'guava', version: '+'
+
+    //NR logging
+    implementation group: "com.newrelic.logging", name:"logback", version: "1.+"
+
+//    Uncomment this when you are using flyway
+//    implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.+'
+
+    testImplementation (group: 'com.chegg.boots', name: 'boots-test-utils', version: '0.+') {
+        exclude group: 'junit'
+    }
+
+    testImplementation('org.mockito:mockito-core')
+    testImplementation('org.mockito:mockito-junit-jupiter')
+
+    // New Relic Dependency for Trace and Transaction management
+    implementation group: 'com.newrelic.agent.java', name: 'newrelic-api', version: '+'
+}
