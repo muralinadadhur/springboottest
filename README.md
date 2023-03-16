@@ -68,10 +68,6 @@ Below pre-requisites should be fulfilled before deploying batch job to AWS envir
 By default, the pipeline gives access for its **secretsmanager** resource. Rest has to be done through SRE.
 > NOTE: Batch Roles are managed as Least privilege basis by SRE. Batch execution role needs to be provided required permissions to access resources.
 
-##### Setup local environment
-
-Use the OKTA STS to locally have access to AWS resource. Ref: [Chegg-Okta AWS Setup](https://chegg.atlassian.net/wiki/spaces/CLOUD/pages/386602/AWS+Account+Federation+Okta+and+AWS+CLI+RUNBOOK)
-
 <br/>
 
 ### QuickStart
@@ -98,21 +94,3 @@ Want to help improve? Check out the [contributing docs](CONTRIBUTING.md) to get 
 * Discuss ideas in issues
 * Spread the word
 * Reach out with any feedback
-
-<br/>
-
-### Compliance
-
-**Level 1:** Visit [party of five template compliance](https://chegg.atlassian.net/wiki/spaces/ARCH/pages/84988/Party+of+5#Partyof5-TemplateComplianceLevel) for details
-
-<br/>
-
-### Questions? Need help?
-
-Please reach out to **#india-batch-and-offline-architecture** on Slack channel, and your request will be routed to the right team at Chegg.
-
-<br/>
-
-## License
-
-Chegg Copyright 2020
