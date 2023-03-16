@@ -41,48 +41,6 @@ This can be set in the following ways:
     ```
 <br/>
 
-#### SecretsManager/ParamStore
-
-Configured to use AWS Secrets Manager / Parameter Store to use secret params.
-the secrets can be found at ECS_CLUSTER/APP_NAME. (Ex: test/boots-template-batch).
-
-To enable secrets manager, simply set `aws.secretsmanager.enabled=true` in *resources/bootstrap.properties* file.
-
-The secret can be stored as the same param name as its stored in application.properties file.
-Ex. `appl.prop.variable`
-For any property present in both the properties file and in secrets-manager, secrets-manager will override whatever is preset in the file.
-
-<br/>
-
-#### Pipeline
-
-This uses GitLab's inbuilt CI/CD pipelines.
-
-<br/>
-
-### Pre-Requisites
-
-Below pre-requisites should be fulfilled before deploying batch job to AWS environment.
-* IAM Role "{environment}-{repository_name}" role is assumed by batch job for execution.
-
-By default, the pipeline gives access for its **secretsmanager** resource. Rest has to be done through SRE.
-> NOTE: Batch Roles are managed as Least privilege basis by SRE. Batch execution role needs to be provided required permissions to access resources.
-
-<br/>
-
-### QuickStart
-
-* Fork from this repo using the fork option of the repo.
-* Clone your repo
-* To modify this from change me to your app name run `sh templatizer.sh <your-app-name>`. This will change all change me occurrences to your app name.
-* Run `./gradlew clean build` to install all dependencies.
-* To run the app locally, use: `./gradlew bootRun --args='--type JOB_NAME'` . The type argument details have been mentioned earlier.
-* Before pushing the code, make sure in the *gitlab-ci.yml* file, the `GITLAB_GROUP: required` is changed to your group (ex: study, content, etc) and the `file: '/required.yml'` is changed to your group's filename ex: *study.yml*
-* After all changes are made and code is pushed and merged, the pipeline will update the AWS batch job.
-* Once the batch job is created on AWS, create a Rundeck job for the same if job is to be run using Rundeck.
-> To set up Rundeck for this job, follow this document: [Rundeck-Setup](https://chegg.atlassian.net/wiki/spaces/~116261519/pages/73930210/How+to+set+up+a+Runde@ckPro+job)
-
-<br/>
 
 ### Contributors
 
